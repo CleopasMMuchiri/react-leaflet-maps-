@@ -1,15 +1,16 @@
 import { faCrosshairs } from "@fortawesome/free-solid-svg-icons/faCrosshairs";
 import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { flyToChurch } from "./mapUtils";
 
 const UserLocation = ({ mapRef, ZOOM_LEVEL, location, getLocation }) => {
   useEffect(() => {
     if (location.loaded && !location.error) {
-      mapRef.current?.flyTo(
-        [location.coordinates.lat, location.coordinates.lng],
-        ZOOM_LEVEL,
-        { animate: true }
-      );
+      const userLocation = {
+        lat: location.coordinates.lat,
+        lng: location.coordinates.lng,
+      };
+      flyToChurch(mapRef, userLocation, () => {}, ZOOM_LEVEL);
     }
   }, [location, mapRef, ZOOM_LEVEL]);
 
@@ -22,7 +23,7 @@ const UserLocation = ({ mapRef, ZOOM_LEVEL, location, getLocation }) => {
       <button
         onClick={handleClick}
         title="Locate Me"
-        className="cursor-pointer fixed bottom-8 right-4 z-[1000] bg-white text-black p-2 rounded-full shadow-md hover:scale-105 transition-transform"
+        className="cursor-pointer fixed bottom-8 right-4 z-[10000] bg-white text-black p-2 rounded-full shadow-md hover:scale-105 transition-transform"
       >
         <FontAwesomeIcon icon={faCrosshairs} className="text-xl" />
       </button>

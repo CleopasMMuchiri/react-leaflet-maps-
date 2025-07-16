@@ -6,6 +6,7 @@
     "image": "https://plus.unsplash.com/premium_photo-1661377118520-287ec60a32f3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "lat": -1.285135,
     "lng": 37.104171,
+    "region": "Nairobi",
     "services": [
       {
         "day": "Sunday",
@@ -35,6 +36,7 @@
     "image": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620",
     "lat": -1.2899,
     "lng": 37.09871,
+    "region": "Nairobi",
     "services": [
       {
         "day": "Sunday",
@@ -59,6 +61,7 @@
     "image": "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b",
     "lat": -1.260221,
     "lng": 36.950471,
+    "region": "Nairobi",
     "services": [
       {
         "day": "Sunday",
@@ -79,6 +82,7 @@
     "image": "https://images.unsplash.com/photo-1588072432836-e10032774350",
     "lat": -1.216775,
     "lng": 36.881832,
+    "region": "Nairobi",
     "services": [
       {
         "day": "Sunday",
@@ -100,6 +104,7 @@
     "image": "https://images.unsplash.com/photo-1566669437686-c2b3f6a721f4",
     "lat": -1.285135,
     "lng": 37.104171,
+    "region": "Rift Valley",
     "services": [
       {
         "day": "Sunday",
@@ -129,6 +134,7 @@
     "image": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620",
     "lat": -1.2899,
     "lng": 37.0871,
+    "region": "Rift Valley",
     "services": [
       {
         "day": "Sunday",
@@ -153,6 +159,7 @@
     "image": "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b",
     "lat": -1.60221,
     "lng": 36.950471,
+    "region": "Rift Valley",
     "services": [
       {
         "day": "Sunday",
@@ -173,6 +180,7 @@
     "image": "https://images.unsplash.com/photo-1588072432836-e10032774350",
     "lat": -1.216775,
     "lng": 36.81832,
+    "region": "Rift Valley",
     "services": [
       {
         "day": "Sunday",
@@ -194,6 +202,7 @@
     "image": "https://images.unsplash.com/photo-1566669437686-c2b3f6a721f4",
     "lat": -1.25122,
     "lng": 37.104171,
+    "region": "Western",
     "services": [
       {
         "day": "Sunday",
@@ -223,6 +232,7 @@
     "image": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620",
     "lat": -1.2332,
     "lng": 37.09871,
+    "region": "Western",
     "services": [
       {
         "day": "Sunday",
@@ -247,6 +257,7 @@
     "image": "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b",
     "lat": -1.260224,
     "lng": 36.950791,
+    "region": "Western",
     "services": [
       {
         "day": "Sunday",
@@ -267,6 +278,7 @@
     "image": "https://images.unsplash.com/photo-1588072432836-e10032774350",
     "lat": -1.216333,
     "lng": 36.881832,
+    "region": "Western",
     "services": [
       {
         "day": "Sunday",

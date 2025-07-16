@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronCircleLeft,
   faDirections,
+  faMapPin,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = ({ open, setOpen, church }) => {
@@ -38,7 +39,7 @@ const Sidebar = ({ open, setOpen, church }) => {
           onClick={() => setOpen(false)}
         >
           <motion.div
-            className="h-full w-[80vw] max-w-[400px] bg-neutral-900/90 backdrop-blur shadow-xl z-50"
+            className="h-full w-[80vw] max-w-[400px] bg-white backdrop-blur shadow-xl z-50"
             initial={{ x: "-100%" }}
             animate={{ x: 0 }}
             exit={{ x: "-100%" }}
@@ -58,14 +59,27 @@ const Sidebar = ({ open, setOpen, church }) => {
                 />
               </motion.button>
             </div>
-            <div className=" text-white">
+            <div className="text-black">
+              {/* Church Image */}
               <img
                 src={church.image || "https://via.placeholder.com/400x200"}
                 alt={church.name}
-                className="w-full rounded-lg mb-4"
+                className="w-full rounded-b-lg  mb-4"
               />
-              <div className="border-b-2 pb-2 border-white w-full flex justify-between items-center px-4 flex-wrap">
-                <h2 className="text-2xl font-semibold">{church.name}</h2>
+
+              {/* Title & Top Info */}
+              <div className="border-b border-black/20 pb-3 mb-4 px-4 flex justify-between items-start flex-wrap gap-2">
+                <div>
+                  <h2 className="text-2xl font-semibold">{church.name}</h2>
+                  {church.region && (
+                    <p className="text-sm border-black/60 flex items-center gap-1">
+                      <FontAwesomeIcon icon={faMapPin} />
+                      <span>{church.region}</span>
+                    </p>
+                  )}
+                </div>
+
+                {/* Directions Button */}
                 <a
                   href={`https://www.google.com/maps/dir/?api=1&destination=${church.lat},${church.lng}`}
                   target="_blank"
@@ -74,70 +88,111 @@ const Sidebar = ({ open, setOpen, church }) => {
                   <motion.button
                     onClick={() => setOpen(false)}
                     whileTap={{ scale: 0.95 }}
-                    className="cursor-pointer rounded-full transition-colors text-white shadow-lg"
-                    aria-label="Close Sidebar"
+                    className="cursor-pointer rounded-full p-2 text-black shadow-lg bg-gray-200 hover:bg-gray-300"
+                    aria-label="Get Directions"
                   >
                     <FontAwesomeIcon icon={faDirections} className="text-xl" />
                   </motion.button>
                 </a>
               </div>
 
-              <div className="p-4">
-                <p className="mb-1 text-lg">Contact: {church.contact}</p>
-                <h3>Services Time</h3>
-                <ul>
+              {/* Distance */}
+              {church.distance && (
+                <div className="mx-4 mb-4 px-4 py-2 flex items-center gap-3 bg-gray-100 rounded-lg shadow">
+                  <FontAwesomeIcon icon={faMapPin} className="text-black/70" />
+                  <p className="font-medium ">
+                    {church.distance.toFixed(1)} km from your location
+                  </p>
+                </div>
+              )}
+
+              {/* Contact Info */}
+              <div className="px-4 mb-4">
+                <h3 className="text-lg font-semibold mb-1">Contact</h3>
+                <p className="text-black/90">{church.contact}</p>
+              </div>
+
+              {/* Service Times */}
+              <div className="px-4 mb-4">
+                <h3 className="text-lg font-semibold mb-2">Service Times</h3>
+                <ul className="space-y-1 text-sm text-black">
                   {church.services.map((service, index) => (
-                    <li key={index}>
-                      <span>
-                        {service.day} : {service.type}
+                    <li
+                      key={index}
+                      className="flex justify-between border-b border-black/10 py-1"
+                    >
+                      <span className="font-medium">
+                        {service.day} – {service.type}
                       </span>
-                      <span>{service.time}</span>
+                      <span className="font-light">{service.time}</span>
                     </li>
                   ))}
                 </ul>
+              </div>
 
-                <div className="mt-4">
+              {/* Additional Info */}
+              {church.additionalInfo && (
+                <div className="px-4 mb-6">
                   <h3 className="text-lg font-semibold mb-2">
                     Additional Info
                   </h3>
-                  <ul className="space-y-1 text-sm">
-                    {church.additionalInfo?.prayerMeeting && (
+                  <ul className="space-y-1 text-sm text-black/90">
+                    {church.additionalInfo.prayerMeeting && (
                       <li>
-                        🙏 Prayer Meeting: {church.additionalInfo.prayerMeeting}
+                        <FontAwesomeIcon
+                          icon={faMapPin}
+                          className="mr-2 text-black/60"
+                        />
+                        Prayer Meeting: {church.additionalInfo.prayerMeeting}
                       </li>
                     )}
-                    {church.additionalInfo?.choirPractice && (
+                    {church.additionalInfo.choirPractice && (
                       <li>
-                        🙏 Choir Practice: {church.additionalInfo.choirPractice}
+                        <FontAwesomeIcon
+                          icon={faMapPin}
+                          className="mr-2 text-black/60"
+                        />
+                        Choir Practice: {church.additionalInfo.choirPractice}
                       </li>
                     )}
-                    {church.additionalInfo?.womenFellowship && (
+                    {church.additionalInfo.womenFellowship && (
                       <li>
-                        🙏 Women Fellowship:{" "}
+                        <FontAwesomeIcon
+                          icon={faMapPin}
+                          className="mr-2 text-black/60"
+                        />
+                        Women Fellowship:{" "}
                         {church.additionalInfo.womenFellowship}
                       </li>
                     )}
-                    {church.additionalInfo?.youthService && (
+                    {church.additionalInfo.youthService && (
                       <li>
-                        👥 Youth Service: {church.additionalInfo.youthService}
+                        <FontAwesomeIcon
+                          icon={faMapPin}
+                          className="mr-2 text-black/60"
+                        />
+                        Youth Service: {church.additionalInfo.youthService}
                       </li>
                     )}
-                    {church.additionalInfo?.website && (
+                    {church.additionalInfo.website && (
                       <li>
-                        🌐{" "}
+                        <FontAwesomeIcon
+                          icon={faMapPin}
+                          className="mr-2 text-black/60"
+                        />
                         <a
                           href={church.additionalInfo.website}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-400 underline"
                         >
-                          Church Website
+                          Visit Church Website
                         </a>
                       </li>
                     )}
                   </ul>
                 </div>
-              </div>
+              )}
             </div>
           </motion.div>
         </motion.div>

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import osm_provider from "./osm_provider";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Circle } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import churches from "./churches.json";
 import MarkerClusterGroup from "react-leaflet-markercluster";
@@ -11,6 +11,14 @@ import Sidebar from "./Sidebar";
 import UserLocation from "./UserLocation";
 import useGeoLocation from "./useGeoLocation";
 import L from "leaflet";
+import getDistance from "geolib/es/getPreciseDistance";
+import userLocationPin from "./assets/map-pin-solid.svg";
+import defaultPinLocator from "./assets/location-pin-solid.svg";
+import nearPin from "./assets/location-dot-solid.svg";
+import { motion, AnimatePresence } from "framer-motion";
+import Search from "./Search";
+import Filter from "./Filter";
+import FilterSidebar from "./FilterSidebar";
 
 const Basic = () => {
   const [center, setCenter] = useState({ lat: -1.287092, lng: 37.103469 });
@@ -21,17 +29,33 @@ const Basic = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1028); //  Check if mobile
   const [openDrawer, setOpenDrawer] = useState(false);
   const [sidebar, setSidebar] = useState(false);
+  const [filterSidebar, setFilterSidebar] = useState(false);
   const [selectedChurch, setSelectedChurch] = useState(null);
+  const [churchesWithDistance, setChurchesWithDistance] = useState([]);
+  const [closestChurch, setClosestChurch] = useState(null);
 
   const { location, getLocation } = useGeoLocation();
 
-  const userLocationIcon = new L.divIcon({
-    className: "user-location-icon",
-    iconSize: [15, 15],
-    iconAnchor: [15, 50],
-    popupAnchor: [-5, -40],
+  const userLocationIcon = new L.Icon({
+    iconUrl: userLocationPin,
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
+    popupAnchor: [0, -30],
   });
 
+  const defaultPin = new L.Icon({
+    iconUrl: defaultPinLocator,
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
+    popupAnchor: [0, -30],
+  });
+
+  const closeChurchPin = new L.Icon({
+    iconUrl: nearPin,
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
+    popupAnchor: [0, -30],
+  });
   // ✅ Update state when screen resizes
   useEffect(() => {
     const handleResize = () => {
@@ -45,6 +69,34 @@ const Basic = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    if (location.loaded && !location.error) {
+      const updated = churches.map((church) => {
+        const distance = getDistance(
+          {
+            latitude: location.coordinates.lat,
+            longitude: location.coordinates.lng,
+          },
+          {
+            latitude: church.lat,
+            longitude: church.lng,
+          }
+        );
+
+        return {
+          ...church,
+          distance: distance / 1000,
+        };
+      });
+
+      const sorted = updated.sort((a, b) => a.distance - b.distance);
+      setChurchesWithDistance(updated);
+      setClosestChurch(sorted[0]);
+    }
+  }, [location]);
+
+  const displayedChurches =
+    churchesWithDistance.length > 0 ? churchesWithDistance : churches;
   return (
     <div className="row">
       <MapContainer
@@ -58,8 +110,13 @@ const Basic = () => {
           attribution={osm_provider.maptiler.attribution}
         />
         <MarkerClusterGroup>
-          {churches.map((church) => (
+          {displayedChurches.map((church) => (
             <Marker
+              icon={
+                church.distance !== undefined && church.distance < 5
+                  ? closeChurchPin
+                  : defaultPin
+              }
               key={church.id}
               position={[church.lat, church.lng]}
               eventHandlers={{
@@ -74,7 +131,12 @@ const Basic = () => {
               <Popup>
                 <strong>{church.name}</strong>
                 <br />
-                Contact: {church.contact} <br />
+                <p>Contact: {church.contact}</p>
+                <br />
+                {church.distance !== undefined && (
+                  <p>Distance: {church.distance.toFixed(1)} km</p>
+                )}
+                <br />
                 <a
                   href={`https://www.google.com/maps/dir/?api=1&destination=${church.lat},${church.lng}`}
                   target="_blank"
@@ -88,14 +150,21 @@ const Basic = () => {
         </MarkerClusterGroup>
 
         {location.loaded && !location.error && (
-          <Marker
-            icon={userLocationIcon}
-            position={[location.coordinates.lat, location.coordinates.lng]}
-          >
-            <Popup>
-              <strong>Gotcha</strong>
-            </Popup>
-          </Marker>
+          <>
+            <Circle
+              center={[location.coordinates.lat, location.coordinates.lng]}
+              radius={5000}
+              pathOptions={{ fillColor: "green", color: "blue" }}
+            />
+            <Marker
+              icon={userLocationIcon}
+              position={[location.coordinates.lat, location.coordinates.lng]}
+            >
+              <Popup>
+                <strong>You are here</strong>
+              </Popup>
+            </Marker>
+          </>
         )}
 
         <UserLocation
@@ -104,39 +173,66 @@ const Basic = () => {
           location={location}
           getLocation={getLocation}
         />
+
+        {closestChurch && location.loaded && (
+          <AnimatePresence>
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ ease: "easeInOut", duration: 0.3 }}
+              className="fixed bottom-2 bg-white p-4 rounded-md shadow-lg z-[1000] flex flex-col gap-4"
+            >
+              <div>
+                <p className="font-semibold">
+                  Closest Church: {closestChurch.name}
+                </p>
+                <p className="text-sm text-gray-600">
+                  Approximately {closestChurch.distance.toFixed(1)} km away
+                </p>
+              </div>
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${closestChurch.lat},${closestChurch.lng}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 font-bold underline"
+              >
+                <button className="hover:underline cursor-pointer">
+                  Let’s Go to Church
+                </button>
+              </a>
+            </motion.div>
+          </AnimatePresence>
+        )}
       </MapContainer>
 
       {!isMobile && (
-        <>
-          <button
-            onClick={() => setSidebar(true)}
-            className="cursor-pointer fixed top-4 right-4 z-50 text-black p-3 rounded-md shadow-md"
-          >
-            <FontAwesomeIcon icon={faBars} size="lg" />
-          </button>
-          <Sidebar
-            open={sidebar}
-            setOpen={setSidebar}
-            church={selectedChurch}
-          />
-        </>
+        <Sidebar open={sidebar} setOpen={setSidebar} church={selectedChurch} />
       )}
 
       {isMobile && (
-        <>
-          <button
-            onClick={() => setOpenDrawer(true)}
-            className="cursor-pointer fixed top-4 right-4 z-50 text-black p-3 rounded-md shadow-md"
-          >
-            <FontAwesomeIcon icon={faBars} size="lg" />
-          </button>
-          <MobileDrawer
-            open={openDrawer}
-            setOpen={setOpenDrawer}
-            church={selectedChurch}
-          />
-        </>
+        <MobileDrawer
+          open={openDrawer}
+          setOpen={setOpenDrawer}
+          church={selectedChurch}
+        />
       )}
+
+      <div className="fixed top-4 right-4 z-50 flex flex-wrap gap-2">
+        <Search
+          churches={displayedChurches}
+          setSelectedChurch={setSelectedChurch}
+          mapRef={mapRef}
+        />
+        <Filter setOpen={setFilterSidebar} />
+      </div>
+
+      <FilterSidebar
+        open={filterSidebar}
+        setOpen={setFilterSidebar}
+        mapRef={mapRef}
+        setSelectedChurch={setSelectedChurch}
+      />
     </div>
   );
 };
