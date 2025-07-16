@@ -1,0 +1,283 @@
+[
+  {
+    "id": 1,
+    "name": "GOA Dream Centre",
+    "contact": "+254 712 345678",
+    "image": "https://plus.unsplash.com/premium_photo-1661377118520-287ec60a32f3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "lat": -1.285135,
+    "lng": 37.104171,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "8:00 AM - 10:00 AM",
+        "type": "Main Service (English)"
+      },
+      {
+        "day": "Sunday",
+        "time": "10:30 AM - 12:30 PM",
+        "type": "Main Service (Swahili)"
+      },
+      {
+        "day": "Wednesday",
+        "time": "5:30 PM - 7:00 PM",
+        "type": "Bible Study"
+      }
+    ],
+    "additionalInfo": {
+      "prayerMeeting": "Friday 6:00 PM - 7:30 PM",
+      "youthService": "Saturday 4:00 PM - 6:00 PM"
+    }
+  },
+  {
+    "id": 2,
+    "name": "GOA Umoja Church",
+    "contact": "+254 733 123456",
+    "image": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620",
+    "lat": -1.2899,
+    "lng": 37.09871,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "7:30 AM - 9:30 AM",
+        "type": "Early Service"
+      },
+      {
+        "day": "Sunday",
+        "time": "10:00 AM - 12:30 PM",
+        "type": "Main Service"
+      }
+    ],
+    "additionalInfo": {
+      "choirPractice": "Thursday 4:00 PM",
+      "womenFellowship": "Tuesday 10:00 AM"
+    }
+  },
+  {
+    "id": 3,
+    "name": "GOA Githurai Church",
+    "contact": "+254 701 987654",
+    "image": "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b",
+    "lat": -1.260221,
+    "lng": 36.950471,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "9:00 AM - 11:00 AM",
+        "type": "Main Service"
+      },
+      {
+        "day": "Tuesday",
+        "time": "5:00 PM - 6:30 PM",
+        "type": "Prayer Meeting"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "GOA Thika Road Church",
+    "contact": "+254 721 112233",
+    "image": "https://images.unsplash.com/photo-1588072432836-e10032774350",
+    "lat": -1.216775,
+    "lng": 36.881832,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "8:30 AM - 10:30 AM",
+        "type": "First Service"
+      },
+      {
+        "day": "Sunday",
+        "time": "11:00 AM - 1:00 PM",
+        "type": "Second Service"
+      }
+    ]
+  },
+
+  {
+    "id": 5,
+    "name": "GOA Dream Centre",
+    "contact": "+254 712 345678",
+    "image": "https://images.unsplash.com/photo-1566669437686-c2b3f6a721f4",
+    "lat": -1.285135,
+    "lng": 37.104171,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "8:00 AM - 10:00 AM",
+        "type": "Main Service (English)"
+      },
+      {
+        "day": "Sunday",
+        "time": "10:30 AM - 12:30 PM",
+        "type": "Main Service (Swahili)"
+      },
+      {
+        "day": "Wednesday",
+        "time": "5:30 PM - 7:00 PM",
+        "type": "Bible Study"
+      }
+    ],
+    "additionalInfo": {
+      "prayerMeeting": "Friday 6:00 PM - 7:30 PM",
+      "youthService": "Saturday 4:00 PM - 6:00 PM"
+    }
+  },
+  {
+    "id": 6,
+    "name": "GOA Umoja Church",
+    "contact": "+254 733 123456",
+    "image": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620",
+    "lat": -1.2899,
+    "lng": 37.0871,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "7:30 AM - 9:30 AM",
+        "type": "Early Service"
+      },
+      {
+        "day": "Sunday",
+        "time": "10:00 AM - 12:30 PM",
+        "type": "Main Service"
+      }
+    ],
+    "additionalInfo": {
+      "choirPractice": "Thursday 4:00 PM",
+      "womenFellowship": "Tuesday 10:00 AM"
+    }
+  },
+  {
+    "id": 7,
+    "name": "GOA Githurai Church",
+    "contact": "+254 701 987654",
+    "image": "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b",
+    "lat": -1.60221,
+    "lng": 36.950471,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "9:00 AM - 11:00 AM",
+        "type": "Main Service"
+      },
+      {
+        "day": "Tuesday",
+        "time": "5:00 PM - 6:30 PM",
+        "type": "Prayer Meeting"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "GOA Thika Road Church",
+    "contact": "+254 721 112233",
+    "image": "https://images.unsplash.com/photo-1588072432836-e10032774350",
+    "lat": -1.216775,
+    "lng": 36.81832,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "8:30 AM - 10:30 AM",
+        "type": "First Service"
+      },
+      {
+        "day": "Sunday",
+        "time": "11:00 AM - 1:00 PM",
+        "type": "Second Service"
+      }
+    ]
+  },
+
+  {
+    "id": 9,
+    "name": "GOA Dream Centre",
+    "contact": "+254 712 345678",
+    "image": "https://images.unsplash.com/photo-1566669437686-c2b3f6a721f4",
+    "lat": -1.25122,
+    "lng": 37.104171,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "8:00 AM - 10:00 AM",
+        "type": "Main Service (English)"
+      },
+      {
+        "day": "Sunday",
+        "time": "10:30 AM - 12:30 PM",
+        "type": "Main Service (Swahili)"
+      },
+      {
+        "day": "Wednesday",
+        "time": "5:30 PM - 7:00 PM",
+        "type": "Bible Study"
+      }
+    ],
+    "additionalInfo": {
+      "prayerMeeting": "Friday 6:00 PM - 7:30 PM",
+      "youthService": "Saturday 4:00 PM - 6:00 PM"
+    }
+  },
+  {
+    "id": 10,
+    "name": "GOA Umoja Church",
+    "contact": "+254 733 123456",
+    "image": "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620",
+    "lat": -1.2332,
+    "lng": 37.09871,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "7:30 AM - 9:30 AM",
+        "type": "Early Service"
+      },
+      {
+        "day": "Sunday",
+        "time": "10:00 AM - 12:30 PM",
+        "type": "Main Service"
+      }
+    ],
+    "additionalInfo": {
+      "choirPractice": "Thursday 4:00 PM",
+      "womenFellowship": "Tuesday 10:00 AM"
+    }
+  },
+  {
+    "id": 11,
+    "name": "GOA Githurai Church",
+    "contact": "+254 701 987654",
+    "image": "https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b",
+    "lat": -1.260224,
+    "lng": 36.950791,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "9:00 AM - 11:00 AM",
+        "type": "Main Service"
+      },
+      {
+        "day": "Tuesday",
+        "time": "5:00 PM - 6:30 PM",
+        "type": "Prayer Meeting"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "GOA Thika Road Church",
+    "contact": "+254 721 112233",
+    "image": "https://images.unsplash.com/photo-1588072432836-e10032774350",
+    "lat": -1.216333,
+    "lng": 36.881832,
+    "services": [
+      {
+        "day": "Sunday",
+        "time": "8:30 AM - 10:30 AM",
+        "type": "First Service"
+      },
+      {
+        "day": "Sunday",
+        "time": "11:00 AM - 1:00 PM",
+        "type": "Second Service"
+      }
+    ]
+  }
+]

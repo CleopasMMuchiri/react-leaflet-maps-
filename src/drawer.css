@@ -1,0 +1,47 @@
+.scroll-place {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2rem;
+}
+
+.scroll-place {
+  scrollbar-width: none;
+}
+
+.scroll-place::-webkit-scrollbar {
+  display: none;
+}
+
+.history-list-mother{
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+
+  
+}
+.history-list{
+  padding: 1rem;
+  border-radius: 20px;
+  text-transform: capitalize;
+  position: relative;
+  z-index: 10;
+  
+
+  div{
+    z-index: 20;
+    mix-blend-mode: luminosity;
+  }
+
+   &::before{
+    content: "";
+    position: absolute;
+    border-radius: 20px;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 15;
+  }
+}
+
+
