@@ -2,6 +2,8 @@ import { faCrosshairs } from "@fortawesome/free-solid-svg-icons/faCrosshairs";
 import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { flyToChurch } from "./mapUtils";
+import { toast } from "react-toastify";
+import NProgress from "nprogress";
 
 const UserLocation = ({ mapRef, ZOOM_LEVEL, location, getLocation }) => {
   useEffect(() => {
@@ -13,6 +15,16 @@ const UserLocation = ({ mapRef, ZOOM_LEVEL, location, getLocation }) => {
       flyToChurch(mapRef, userLocation, () => {}, ZOOM_LEVEL);
     }
   }, [location, mapRef, ZOOM_LEVEL]);
+
+  useEffect(() => {
+    if (location.loading) {
+      NProgress.start();
+    } else if (location.loaded) {
+      NProgress.done();
+    } else if (location.error) {
+      toast.info("Failed to Locate you");
+    }
+  }, [location]);
 
   const handleClick = () => {
     getLocation();
